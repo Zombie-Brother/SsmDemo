@@ -9,8 +9,6 @@ public class Person {
     private String email;
     private int status;
 
-    //getter  setter
-
     @Override
     public String toString(){
         return this.getId()+"---"+this.getName()+"---"+
