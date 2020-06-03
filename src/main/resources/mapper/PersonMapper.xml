@@ -5,7 +5,7 @@
 <mapper namespace="com.ssm.demo.dao.PersonMapperDao">
 
     <select id="findPersonById" resultType="Person" parameterType="long">
-        SELECT * FROM sys_user WHERE id = #{id}
+        SELECT id,name FROM sys_user WHERE id = #{id}
     </select>
 
 </mapper>
