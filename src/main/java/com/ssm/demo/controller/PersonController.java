@@ -12,13 +12,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/person")
+@RequestMapping("person")
 public class PersonController {
 
     @Autowired
     private PersonService personService;
 
-    @RequestMapping("/selectPerson")
+    @RequestMapping("selectPerson")
     @ResponseBody
     public Map selectPerson(HttpServletRequest request) {
         long personId = Long.parseLong(request.getParameter("id"));
