@@ -1,41 +1,24 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-%>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>person</title>
-    <script type="text/javascript" src="<%=basePath%>/static/jquery-3.5.1.min.js"></script>
+    <title>test</title>
 </head>
-<body>
-
-<span class="id"></span>
-<span class="name"></span>
-<span class="email"></span>
-<span class="status"></span>
-
-<script type="text/javascript">
-    var url = "/person/selectPerson?id=1"
-    $(function () {
-        $.ajax({
-            url: url,
-            type: "post",
-            dataType: "json",
-            success: function (data) {
-                $(".id").text(data.person.id);
-                $(".name").text(data.person.name);
-                $(".email").text(data.person.email);
-                $(".status").text(data.person.status);
-            },
-            error: function () {
-                alert("请求失败");
+<script>
+    function selectUser() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("test").innerHTML = xmlhttp.responseText;
             }
-        })
-    })
+        }
+        xmlhttp.open("POST", "person/selectPerson", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("id=1");
+    }
 </script>
-
+<body>
+<p id="test">Hello World!</p>
+<button type="button" onclick="selectUser()">onclick test</button>
 </body>
 </html>

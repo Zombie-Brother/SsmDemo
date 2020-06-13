@@ -18,27 +18,6 @@
         </layout>
     </appender>
 
-    <!-- 配置mybatis打印sql语句 -->
-
-    <!-- 这是网上看别人说的，我尝试了，加与不加都没关系，有兴趣自己去尝试
-        <category name="org.springframework" additivity="false">
-            <priority value="DEBUG"/>
-            <appender-ref ref="CONSOLE"/>
-        </category>
-        <category name="org.springframework.orm.ibatis3" additivity="false">
-            <priority value="DEBUG"/>
-            <appender-ref ref="CONSOLE"/>
-        </category>
-        <category name="org.apache.ibatis" additivity="false">
-            <priority value="DEBUG"/>
-            <appender-ref ref="CONSOLE"/>
-        </category>
-        <category name="java.sql" additivity="false">
-            <priority value="DEBUG"/>
-            <appender-ref ref="CONSOLE"/>
-        </category>-->
-
-    <!-- ++++++++++++++++++++++++ -->
     <!-- druid数据源配置打印日志 start-->
     <logger name="druid.sql">
         <level value="DEBUG"/>
@@ -55,43 +34,12 @@
     <logger name="druid.sql.ResultSet">
         <level value="DEBUG"/>
     </logger>
-    <!-- druid数据源配置打印日志 end -->
-    <!-- ++++++++++++++++++++++++ -->
 
-    <!-- spring提供的数据源打印日志 -->
-    <!--
-    <logger name="com.springframework" additivity="true">
-         <level value="DEBUG"/>
-     </logger>
-     <logger name="com.ibatis" additivity="true">
-         <level value="DEBUG"/>
-     </logger>
-    <logger name="com.ibatis.common.jdbc.SimpleDataSource" additivity="true">
-        <level value="DEBUG"/>
-    </logger>
-    <logger name="com.ibatis.common.jdbc.ScriptRunner" additivity="true">
-        <level value="DEBUG"/>
-    </logger>
-    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" additivity="true">
-        <level value="DEBUG"/>
-    </logger>
-    <logger name="Java.sql.Connection" additivity="true">
-        <level value="DEBUG"/>
-    </logger>
-    <logger name="java.sql.Statement" additivity="true">
-        <level value="DEBUG"/>
-    </logger>
-    <logger name="java.sql.PreparedStatement" additivity="true">
-        <level value="DEBUG"/>
-    </logger>
-    <logger name="java.sql.ResultSet" additivity="true">
-        <level value="DEBUG"/>
-    </logger>
-    -->
     <root>
         <level value="INFO"/>
         <!-- 注意ref中的大小写，就是前面配置的appender的name -->
         <appender-ref ref="CONSOLE"/>
         <!--<appender-ref ref="rollingFile" />-->
     </root>
+
 </log4j:configuration>

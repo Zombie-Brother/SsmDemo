@@ -10,6 +10,5 @@
         <module name="SsmDemo" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
   </component>
 </project>

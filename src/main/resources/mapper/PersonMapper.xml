@@ -3,9 +3,9 @@
 
 <!-- 设置为IUserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.ssm.demo.dao.PersonMapperDao">
-    <select id="findPersonById" resultType="com.ssm.demo.entity.Person">
+    <select id="findPersonById" resultType="com.ssm.demo.entity.Person" parameterType="java.lang.Long">
         SELECT
-          name
+          id
         FROM sys_user
         WHERE id = #{id}
     </select>
