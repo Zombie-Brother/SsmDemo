@@ -2,25 +2,40 @@
 <Configuration status="WARN" monitorInterval="30">
     <Properties>
         <property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t-%L] %-5level
-            %logger{36} - %msg%n</property>
+            %logger{36} - %msg%n
+        </property>
     </Properties>
 
     <Appenders>
         <!--这个输出控制台的配置 -->
         <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %contextName [%thread] %-5level %logger{36} [%file : %line] - %msg%n"/>
             <!-- 控制台只输出level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch) -->
-            <ThresholdFilter level="trace" onMatch="ACCEPT"
-                             onMismatch="DENY" />
-            <PatternLayout pattern="${PATTERN}" />
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
         </Console>
+        <!-- fileName：输出路径  filePattern：命名规则 -->     
+        <RollingFile name="RollingFileInfo" fileName="D:\\logs\\SsmDemo.log" filePattern="D:\\SsmDemo\\$${date:yyyy-MM-dd}/allOut-%d{yyyy-MM-dd}-%i.log.gz">         
+            <!-- 输出格式 -->       
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %contextName [%thread] %-5level %logger{36} [%file : %line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggerzingPolicy interval="1"/>
+                <!-- SizeBasedTriggeringPolicy单个文件的大小限制 -->
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy同一个文件下的最大文件数,默认为最多同一文件夹下7个文件 -->
+            <DefaultRolloverStrategy max="50"/>
+        </RollingFile>
     </Appenders>
 
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
     <Loggers>
+        <!--过滤掉spring和hibernate的一些无用的debug信息-->     
+        <logger name="org.springframework" level="INFO"/> 
+        <logger name="org.mybatis" level="INFO" />     
         <!-- 配置日志的根节点 -->
-        <root level="debug">
-            <appender-ref ref="Console" />
+        <root level="trace">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileInfo"/>
         </root>
-
     </Loggers>
 </Configuration>
