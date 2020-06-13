@@ -5,7 +5,10 @@
 <mapper namespace="com.ssm.demo.dao.PersonMapperDao">
     <select id="findPersonById" resultType="com.ssm.demo.entity.Person" parameterType="java.lang.Long">
         SELECT
-          id
+          id,
+          name,
+          email,
+          status
         FROM sys_user
         WHERE id = #{id}
     </select>
