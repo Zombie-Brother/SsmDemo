@@ -14,12 +14,15 @@
 <span class="status"></span>
 
 <script type="text/javascript">
-    var url = "/person/selectPerson?id=1"
+    var url = "/person/selectPerson"
     $(function () {
         $.ajax({
             url: url,
             type: "post",
             dataType: "json",
+            data:{
+                id:1
+            },
             success: function (data) {
                 $(".id").text(data.person.id);
                 $(".name").text(data.person.name);
