@@ -8,6 +8,27 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:config/spring/spring-*.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <!--默认是classpath下的log4j2.xml-->
+        <param-value>classpath:/config/log4j2.xml</param-value>
+    </context-param>
 
     <!-- 编码过滤器 -->
     <filter>

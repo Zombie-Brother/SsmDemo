@@ -26,9 +26,10 @@ public class PersonController {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
 
+        logger.debug("hello world !");
+
         long personId = Long.parseLong(request.getParameter("id"));
         Person person =personService.findPersonById(personId);
-        logger.debug(String.valueOf(person.getId()));
 
         ObjectMapper mapper = new ObjectMapper();
 
