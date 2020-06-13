@@ -9,14 +9,15 @@
     <Appenders>
         <!--这个输出控制台的配置 -->
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %contextName [%thread] %-5level %logger{36} [%file : %line] - %msg%n"/>
+            <!--设置控制台打印日志的格式-->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"/>
             <!-- 控制台只输出level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch) -->
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
         </Console>
         <!-- fileName：输出路径  filePattern：命名规则 -->     
-        <RollingFile name="RollingFileInfo" fileName="D:\\logs\\SsmDemo.log" filePattern="D:\\SsmDemo\\$${date:yyyy-MM-dd}/allOut-%d{yyyy-MM-dd}-%i.log.gz">         
+        <RollingFile name="RollingFileInfo" fileName="D:\\logs\\SsmDemo.log" filePattern="D:\\logs\\$${date:yyyy-MM-dd}/allOut-%d{yyyy-MM-dd}-%i.log.gz">         
             <!-- 输出格式 -->       
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %contextName [%thread] %-5level %logger{36} [%file : %line] - %msg%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"/>
             <Policies>
                 <TimeBasedTriggerzingPolicy interval="1"/>
                 <!-- SizeBasedTriggeringPolicy单个文件的大小限制 -->
@@ -33,7 +34,7 @@
         <logger name="org.springframework" level="INFO"/> 
         <logger name="org.mybatis" level="INFO" />     
         <!-- 配置日志的根节点 -->
-        <root level="trace">
+        <root level="debug">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>
         </root>

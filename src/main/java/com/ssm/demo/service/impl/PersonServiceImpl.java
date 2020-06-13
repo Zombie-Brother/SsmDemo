@@ -5,8 +5,10 @@ import com.ssm.demo.entity.Person;
 import com.ssm.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonMapperDao personMapperDao;
