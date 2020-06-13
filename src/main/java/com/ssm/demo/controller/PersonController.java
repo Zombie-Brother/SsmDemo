@@ -25,12 +25,9 @@ public class PersonController {
     @RequestMapping("/selectPerson")
     @ResponseBody
     public Map selectPerson(@RequestParam(value = "id") long id) {
-        logger.info(String.valueOf(id));
         Person person = personService.findPersonById(id);
-
         Map map = new HashMap();
         map.put("person", person);
-
         return map;
     }
 }
